@@ -35,9 +35,17 @@ declare global {
  * Devuelve el pool de conexiones (lo crea la primera vez y luego lo reutiliza).
  */
 export function getPool(): Promise<sql.ConnectionPool> {
-  const pool = global._mssqlPool ?? new sql.ConnectionPool(config).connect();
-  global._mssqlPool = pool;
-  return pool;
+  if (!global._mssqlPool) {
+    global._mssqlPool = new sql.ConnectionPool(config)
+      .connect()
+      .catch((err) => {
+        // Si la conexión falla, no dejamos cacheada una promesa fallida,
+        // para poder reintentar en la siguiente petición.
+        global._mssqlPool = undefined;
+        throw err;
+      });
+  }
+  return global._mssqlPool;
 }
 
 export { sql };
