@@ -42,8 +42,8 @@ sistema-hoteles/
 
 | Fase | Estado |
 |------|--------|
-| 1. Análisis | En progreso |
-| 2. Diseño | Pendiente |
+| 1. Análisis | Completa |
+| 2. Diseño | Completa |
 | 3. Implementación | Pendiente |
 | 4. Pruebas | Pendiente |
 | 5. Despliegue | Pendiente |

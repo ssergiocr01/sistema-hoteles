@@ -17,6 +17,7 @@
 | RNF-08 | Escalabilidad | Debe soportar la incorporación de nuevos hoteles sin rediseñar el sistema. |
 | RNF-09 | Idioma | La interfaz debe estar en español. |
 | RNF-10 | Respaldo | Los datos deben respaldarse periódicamente para evitar pérdidas. |
+| RNF-11 | Auditabilidad | El sistema debe registrar en una bitácora los movimientos relevantes (quién, qué y cuándo) para garantizar la trazabilidad. |
 
 ---
 

@@ -81,4 +81,8 @@
 | Código | Requisito |
 |--------|-----------|
 | RF-32 | El sistema debe permitir el inicio de sesión con usuario y contraseña. |
-| RF-33 | El sistema debe restringir las funciones según el rol del usuario. |
+| RF-33 | El sistema debe restringir las funciones según el perfil del usuario. |
+| RF-34 | El sistema debe permitir gestionar perfiles (roles) de usuario. |
+| RF-35 | El sistema debe permitir asignar a cada perfil las opciones de menú y permisos (ver, crear, editar, eliminar). |
+| RF-36 | El sistema debe construir el menú dinámicamente según las opciones permitidas al perfil del usuario. |
+| RF-37 | El sistema debe permitir activar o inhabilitar usuarios sin eliminarlos. |
