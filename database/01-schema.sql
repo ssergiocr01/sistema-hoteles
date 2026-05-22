@@ -7,14 +7,18 @@
    con llaves primarias, foráneas, restricciones CHECK/UNIQUE y las
    columnas de auditoría (RNF-11).
 
-   NOTA: el servidor y el nombre de la base de datos se definen al ejecutar.
-   Si necesitas crear la base desde cero, descomenta el bloque siguiente.
+   Servidor: .\SQLEXPRESS  (SQL Server Express local, autenticación de Windows)
+   Base de datos: sistema_hoteles
+
+   Ejecutar con sqlcmd:
+     sqlcmd -S .\SQLEXPRESS -E -i database\01-schema.sql
    ===================================================================== */
 
--- CREATE DATABASE sistema_hoteles;
--- GO
--- USE sistema_hoteles;
--- GO
+IF DB_ID('sistema_hoteles') IS NULL
+    CREATE DATABASE sistema_hoteles;
+GO
+USE sistema_hoteles;
+GO
 
 /* ---------------------------------------------------------------------
    Convención de auditoría: todas las tablas de negocio incluyen
