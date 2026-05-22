@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { authConfig } from "./auth.config";
-import { getPool, sql } from "@/lib/db";
+import { getPool } from "@/lib/db";
 
 /**
  * Configuración completa de Auth.js.
@@ -28,7 +28,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const pool = await getPool();
         const result = await pool
           .request()
-          .input("email", sql.NVarChar(150), email)
+          .input("email", email) // mssql deduce el tipo del valor
           .execute("sp_login");
 
         const row = result.recordset[0];
