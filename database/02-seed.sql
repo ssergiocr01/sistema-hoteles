@@ -68,7 +68,10 @@ IF NOT EXISTS (SELECT 1 FROM opciones_menu WHERE nombre = 'Usuarios')
     SELECT id, 'Usuarios', '/configuracion/usuarios', 'user', 1 FROM opciones_menu WHERE nombre = 'Configuración';
 IF NOT EXISTS (SELECT 1 FROM opciones_menu WHERE nombre = 'Perfiles')
     INSERT INTO opciones_menu (padre_id, nombre, ruta, icono, orden)
-    SELECT id, 'Perfiles', '/configuracion/perfiles', 'shield', 2 FROM opciones_menu WHERE nombre = 'Configuración';
+    SELECT id, 'Perfiles', '/configuracion/perfiles', 'shield', 2 FROM opciones_menu WHERE nombre = N'Configuración';
+IF NOT EXISTS (SELECT 1 FROM opciones_menu WHERE nombre = 'Errores del sistema')
+    INSERT INTO opciones_menu (padre_id, nombre, ruta, icono, orden)
+    SELECT id, 'Errores del sistema', '/configuracion/errores', 'alert', 3 FROM opciones_menu WHERE nombre = N'Configuración';
 GO
 
 /* --------------------- USUARIO ADMINISTRADOR INICIAL --------------------- */
