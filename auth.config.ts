@@ -15,11 +15,22 @@ export const authConfig = {
   providers: [],
   callbacks: {
     /**
-     * Lo usa el middleware (paso 4): si devuelve false, redirige al login.
-     * De momento: solo se permite el acceso si hay un usuario en sesión.
+     * Lo usa el middleware para decidir el acceso en cada petición.
+     * - Si devuelve false en una ruta privada → Auth.js redirige al login.
+     * - Puede devolver un Response para redirigir manualmente.
      */
-    authorized({ auth }) {
-      return !!auth?.user;
+    authorized({ auth, request: { nextUrl } }) {
+      const isLoggedIn = !!auth?.user;
+      const isOnLogin = nextUrl.pathname.startsWith("/login");
+
+      if (isOnLogin) {
+        // Si ya tiene sesión y entra al login, lo mandamos al inicio.
+        if (isLoggedIn) return Response.redirect(new URL("/", nextUrl));
+        return true; // sin sesión: puede ver el login
+      }
+
+      // Cualquier otra ruta requiere sesión.
+      return isLoggedIn;
     },
   },
 } satisfies NextAuthConfig;
