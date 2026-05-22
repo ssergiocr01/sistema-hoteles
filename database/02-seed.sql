@@ -91,5 +91,26 @@ WHERE p.nombre = 'Administrador'
   );
 GO
 
+/* --------------- USUARIO RECEPCIONISTA (DE PRUEBA) --------------- */
+-- Contraseña: Recep123$  (para demostrar el RBAC: menú reducido y 403)
+IF NOT EXISTS (SELECT 1 FROM usuarios WHERE email = 'recepcion@hoteles.com')
+    INSERT INTO usuarios (perfil_id, nombre, email, password_hash, activo)
+    SELECT id, N'Ana Recepción', 'recepcion@hoteles.com',
+           '$2b$10$rj5EWHwvlAEfna0IbT52M.Wt9IeZq6607.zOAiNgU.pHwW9YLfwim', 1
+    FROM perfiles WHERE nombre = 'Recepcionista';
+GO
+
+/* ----- PERMISOS DEL RECEPCIONISTA: solo opciones operativas ----- */
+INSERT INTO perfil_opcion (perfil_id, opcion_id, puede_ver, puede_crear, puede_editar, puede_eliminar)
+SELECT p.id, o.id, 1, 1, 1, 0
+FROM perfiles p
+CROSS JOIN opciones_menu o
+WHERE p.nombre = 'Recepcionista'
+  AND o.ruta IN ('/habitaciones', '/reservas', '/check-in', '/clientes', '/facturacion')
+  AND NOT EXISTS (
+      SELECT 1 FROM perfil_opcion po WHERE po.perfil_id = p.id AND po.opcion_id = o.id
+  );
+GO
+
 PRINT 'Datos semilla cargados correctamente.';
 GO
