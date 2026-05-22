@@ -36,7 +36,7 @@ sistema-hoteles/
 
 - **Next.js** + **TypeScript** (frontend y backend)
 - **Tailwind CSS** (estilos)
-- Base de datos (se define en la fase de diseño)
+- **SQL Server** (base de datos) con **procedimientos almacenados**, accedidos vía **node-mssql**
 
 ## Estado actual
 
