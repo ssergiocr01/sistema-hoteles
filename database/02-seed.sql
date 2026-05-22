@@ -22,9 +22,9 @@ GO
 IF NOT EXISTS (SELECT 1 FROM perfiles WHERE nombre = 'Administrador')
     INSERT INTO perfiles (nombre, descripcion) VALUES ('Administrador', 'Acceso total al sistema');
 IF NOT EXISTS (SELECT 1 FROM perfiles WHERE nombre = 'Recepcionista')
-    INSERT INTO perfiles (nombre, descripcion) VALUES ('Recepcionista', 'Operación de recepción del hotel');
+    INSERT INTO perfiles (nombre, descripcion) VALUES ('Recepcionista', N'Operación de recepción del hotel');
 IF NOT EXISTS (SELECT 1 FROM perfiles WHERE nombre = 'Cajero')
-    INSERT INTO perfiles (nombre, descripcion) VALUES ('Cajero', 'Facturación y cobros');
+    INSERT INTO perfiles (nombre, descripcion) VALUES ('Cajero', N'Facturación y cobros');
 IF NOT EXISTS (SELECT 1 FROM perfiles WHERE nombre = 'Inventario')
     INSERT INTO perfiles (nombre, descripcion) VALUES ('Inventario', 'Proveedores e inventario');
 GO
@@ -38,23 +38,23 @@ IF NOT EXISTS (SELECT 1 FROM opciones_menu WHERE nombre = 'Check-in / Check-out'
     INSERT INTO opciones_menu (padre_id, nombre, ruta, icono, orden) VALUES (NULL, 'Check-in / Check-out', '/check-in', 'login', 3);
 IF NOT EXISTS (SELECT 1 FROM opciones_menu WHERE nombre = 'Clientes')
     INSERT INTO opciones_menu (padre_id, nombre, ruta, icono, orden) VALUES (NULL, 'Clientes', '/clientes', 'users', 4);
-IF NOT EXISTS (SELECT 1 FROM opciones_menu WHERE nombre = 'Facturación')
-    INSERT INTO opciones_menu (padre_id, nombre, ruta, icono, orden) VALUES (NULL, 'Facturación', '/facturacion', 'receipt', 5);
+IF NOT EXISTS (SELECT 1 FROM opciones_menu WHERE nombre = N'Facturación')
+    INSERT INTO opciones_menu (padre_id, nombre, ruta, icono, orden) VALUES (NULL, N'Facturación', '/facturacion', 'receipt', 5);
 IF NOT EXISTS (SELECT 1 FROM opciones_menu WHERE nombre = 'Inventario')
     INSERT INTO opciones_menu (padre_id, nombre, ruta, icono, orden) VALUES (NULL, 'Inventario', '/inventario', 'box', 6);
 IF NOT EXISTS (SELECT 1 FROM opciones_menu WHERE nombre = 'Proveedores')
     INSERT INTO opciones_menu (padre_id, nombre, ruta, icono, orden) VALUES (NULL, 'Proveedores', '/proveedores', 'truck', 7);
 IF NOT EXISTS (SELECT 1 FROM opciones_menu WHERE nombre = 'Reportes')
     INSERT INTO opciones_menu (padre_id, nombre, ruta, icono, orden) VALUES (NULL, 'Reportes', '/reportes', 'chart', 8);
-IF NOT EXISTS (SELECT 1 FROM opciones_menu WHERE nombre = 'Configuración')
-    INSERT INTO opciones_menu (padre_id, nombre, ruta, icono, orden) VALUES (NULL, 'Configuración', '/configuracion', 'settings', 9);
+IF NOT EXISTS (SELECT 1 FROM opciones_menu WHERE nombre = N'Configuración')
+    INSERT INTO opciones_menu (padre_id, nombre, ruta, icono, orden) VALUES (NULL, N'Configuración', '/configuracion', 'settings', 9);
 GO
 
 /* ---------------------- OPCIONES DE MENÚ (SUBMENÚS) ---------------------- */
 -- Submenús de Reportes
-IF NOT EXISTS (SELECT 1 FROM opciones_menu WHERE nombre = 'Reporte de ocupación')
+IF NOT EXISTS (SELECT 1 FROM opciones_menu WHERE nombre = N'Reporte de ocupación')
     INSERT INTO opciones_menu (padre_id, nombre, ruta, icono, orden)
-    SELECT id, 'Reporte de ocupación', '/reportes/ocupacion', 'chart', 1 FROM opciones_menu WHERE nombre = 'Reportes';
+    SELECT id, N'Reporte de ocupación', '/reportes/ocupacion', 'chart', 1 FROM opciones_menu WHERE nombre = 'Reportes';
 IF NOT EXISTS (SELECT 1 FROM opciones_menu WHERE nombre = 'Reporte de ingresos')
     INSERT INTO opciones_menu (padre_id, nombre, ruta, icono, orden)
     SELECT id, 'Reporte de ingresos', '/reportes/ingresos', 'chart', 2 FROM opciones_menu WHERE nombre = 'Reportes';
